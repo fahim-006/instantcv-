@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\Logout;
+use App\Http\Controllers\CVform;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('profile.Welcomeuser');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+	return view('profile.dashboardUser');
+   //return view('dashboard');
 })->name('dashboard');
+
+Route::get('/logout', [Logout::class, 'logout']);
+Route::get('CVform1', [CVform::class, 'form1'])->name('form1');
+
+Route::post('store/form/{id}', [CVform::class, 'insertDefinedInfo']);

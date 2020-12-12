@@ -5,6 +5,10 @@
 
     <x-slot name="description">
         {{ __('Update your account\'s profile information and email address.') }}
+        <?php
+        $id = Auth::user()->id;
+        print_r($id);
+        ?>
     </x-slot>
 
     <x-slot name="form">
